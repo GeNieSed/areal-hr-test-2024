@@ -1,6 +1,6 @@
 .git/            
 node_modules/    
-.env
+api/scr/config/.env
 package.json
 package-lock.json
 .idea

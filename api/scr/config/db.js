@@ -1,12 +1,24 @@
-const { Pool } = require('pg');
 require('dotenv').config();
-// подключение бд через env
+const { Pool } = require('pg');
 const pool = new Pool({
-    user: process.env.DB_USER,
     host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
+// Функция для проверки подключения к базе данных
+const bdConnection = async () => {
+    try {
+        const client = await pool.connect();
+        console.log('Успешное подключение к базе данных');
+        client.release(); // Освобождаем клиента после успешного подключения
+    } catch (error) {
+        console.error('Ошибка подключения к базе данных:', error.message);
+        process.exit(1); // Завершаем процесс в случае ошибки
+    }
+};
+
+bdConnection();
 
 module.exports = pool;

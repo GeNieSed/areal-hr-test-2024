@@ -1,18 +1,17 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: 'localhost',
+    port: '5432',
+    user: 'postgres',
+    password: '12345678',
+    database: 'hr-frames',
 });
 // Функция для проверки подключения к базе данных
 const bdConnection = async () => {
     try {
         const client = await pool.connect();
         console.log('Успешное подключение к базе данных');
-        client.release(); // Освобождаем клиента после успешного подключения
     } catch (error) {
         console.error('Ошибка подключения к базе данных:', error.message);
         process.exit(1); // Завершаем процесс в случае ошибки

@@ -6,5 +6,8 @@
     "fastify": "^5.1.0",
     "node-pg-migrate": "^7.7.1",
     "pg": "^8.13.1"
+  },
+  "scripts": {
+    "migrate": "node-pg-migrate up -j ts -d DATABASE_URL --envPath .env -m api/migrations"
   }
 }

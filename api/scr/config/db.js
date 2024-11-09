@@ -1,12 +1,14 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
 const { Pool } = require('pg');
 const pool = new Pool({
-    host: 'localhost',
-    port: '5432',
-    user: 'postgres',
-    password: '12345678',
-    database: 'hr-frames',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
+
 // Функция для проверки подключения к базе данных
 const bdConnection = async () => {
     try {

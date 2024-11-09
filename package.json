@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "fastify": "^5.1.0",
+    "node-pg-migrate": "^7.7.1",
+    "pg": "^8.13.1"
+  }
+}

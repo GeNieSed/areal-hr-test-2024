@@ -1,6 +1,4 @@
 .git/            
 node_modules/    
 api/scr/config/.env
-package.json
-package-lock.json
 .idea

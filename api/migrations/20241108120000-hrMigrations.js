@@ -59,6 +59,7 @@ module.exports = {
         pgm.createTable('organizations', {
             id: { type: 'serial', primaryKey: true },
             name: { type: 'varchar(100)', notNull: true },
+            comment: {type: 'text', notNull: false},
         });
 
         // Таблица информации об отделах

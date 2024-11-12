@@ -1,13 +1,21 @@
 {
   "dependencies": {
     "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "fastify": "^5.1.0",
     "node-pg-migrate": "^7.7.1",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5"
   },
   "scripts": {
-    "migrate": "node-pg-migrate up -j ts -d DATABASE_URL --envPath .env -m api/migrations"
+    "migrate": "node-pg-migrate up -j ts -d DATABASE_URL --envPath .env -m api/migrations",
+    "serve": "vue-cli-service serve"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^5.0.8"
   }
 }

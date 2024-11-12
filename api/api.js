@@ -1,11 +1,18 @@
+
 const express = require('express');
-const api = express();
-const organizationRoutes = require('./scr/routes/routerOrganizations.js');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const organizationRoutes = require('./src/routes/routerOrganizations');
+require('dotenv').config();
 
+const app = express();
+const PORT = process.env.PORT || 3001;
 
+app.use(cors());
+app.use(bodyParser.json());
 
-api.use('/api', organizationRoutes)
-// Запуск сервера
-api.listen(3001, () => {
-    console.log("Сервер запущен на 3000 порту");
+app.use('/api', organizationRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

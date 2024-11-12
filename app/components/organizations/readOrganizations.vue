@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Список организаций</h2>
+    <button @click="$router.push('/organization-add')">Добавить организацию</button>
     <table>
       <thead>
       <tr>
@@ -29,7 +30,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'OrganizationsTable',
+  name: 'ReadOrganizations',
   data() {
     return {
       organizations: [],
@@ -48,14 +49,16 @@ export default {
       }
     },
     editOrganization(id) {
-      this.$router.push(`/edit-organization/${id}`);
+      this.$router.push(`/organization-edit/${id}`);
     },
     async deleteOrganization(id) {
       try {
-        await axios.delete(`http://localhost:3001/api/${id}`);
+        await axios.delete(`http://localhost:3001/api/organization/${id}`);
         this.organizations = this.organizations.filter(org => org.id !== id);
+        alert('Организация удалена');
       } catch (error) {
         console.error('Ошибка при удалении:', error);
+        alert('Ошибка при удалении организации');
       }
     },
   },

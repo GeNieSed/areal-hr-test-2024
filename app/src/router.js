@@ -1,26 +1,12 @@
-
 import { createRouter, createWebHistory } from 'vue-router';
-import ReadOrganizations from '../components/organizations/readOrganizations.vue';
-import AddOrganization from '../components/organizations/addOrganizations.vue';
-import EditOrganization from '../components/organizations/editOrganizations.vue';
-
+import organizationRoutes from './routes/organizationRoutes';
+import positionRoutes from './routes/positionRoutes';
+import departmentRoutes from './routes/departmentRoutes';
+// Объединяем маршруты из всех файлов
 const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: ReadOrganizations,
-    },
-    {
-        path: '/organization-add',
-        name: 'AddOrganization',
-        component: AddOrganization,
-    },
-    {
-        path: '/organization-edit/:id',
-        name: 'EditOrganization',
-        component: EditOrganization,
-        props: true,
-    },
+    ...organizationRoutes,
+    ...positionRoutes,
+    ...departmentRoutes,
 ];
 
 const router = createRouter({

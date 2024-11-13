@@ -2,7 +2,7 @@ const pool = require('../config/db.js');
 
 
 // просмотр всех данных
-exports.readOrganizations = async (req, res) => {
+exports.readDepartment= async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM departments');
         res.status(200).json(result.rows);
@@ -13,7 +13,7 @@ exports.readOrganizations = async (req, res) => {
 
 
 // Добавление новой записи
-exports.createOrganization = async (req, res) => {
+exports.createDepartment = async (req, res) => {
     try {
         const { organization_id, name, parent_department_id, comment  } = req.body;
         const result = await pool.query(
@@ -28,7 +28,7 @@ exports.createOrganization = async (req, res) => {
 
 
 // Обновление данных
-exports.updateOrganization = async (req, res) => {
+exports.updateDepartment = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, comment } = req.body;
@@ -47,7 +47,7 @@ exports.updateOrganization = async (req, res) => {
 
 
 //Удаление данных
-exports.deleteOrganization = async (req, res) => {
+exports.deleteDepartment = async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query('DELETE FROM departments WHERE id = $1 RETURNING *', [id]);

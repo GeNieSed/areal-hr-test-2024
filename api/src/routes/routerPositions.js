@@ -4,7 +4,7 @@ const positionsController = require('../controllers/positionsController');
 
 
 // прочитать все должности
-router.get('position', positionsController.readPositions )
+router.get('/position', positionsController.readPositions )
 
 // добавить новую должность
 router.post('/position', positionsController.createPositions)

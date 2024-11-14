@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const departmentController = require('../controllers/employeesController');
+const EmployeesController = require('../controllers/employeesController');
 
-router.get('/employees', departmentController.readDepartment);
+router.get('/employees', EmployeesController.readEmployees);
 
 
 // Добавить новую организацию
-router.post('/employees', departmentController.createDepartment);
+router.post('/employees', EmployeesController.createEmployees);
 
 
 // Обновить существующую организацию по ID
-router.put('/employees/:id', departmentController.updateDepartment);
+router.put('/employees/:id', EmployeesController.updateEmployees);
 
 
 // Удалить организацию по ID
-router.delete('/employees/:id', departmentController.deleteDepartment);
+router.delete('/employees/:id', EmployeesController.deleteEmployees);
 
 module.exports = router;

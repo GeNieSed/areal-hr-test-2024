@@ -15,10 +15,10 @@ exports.readEmployees= async (req, res) => {
 // Добавление новой записи
 exports.createEmployees = async (req, res) => {
     try {
-        const { gender, is_deleted, hire_date, comment } = req.body;
+        const { gender, is_deleted, hire_date, birth_date } = req.body;
         const result = await pool.query(
             'INSERT INTO employees (gender, is_deleted, hire_date, birth_date) VALUES ($1, $2, $3 , $4) RETURNING *',
-            [gender, is_deleted, hire_date, comment]
+            [gender, is_deleted, hire_date, birth_date]
         );
         res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -31,10 +31,10 @@ exports.createEmployees = async (req, res) => {
 exports.updateEmployees = async (req, res) => {
     try {
         const { id } = req.params;
-        const { gender, is_deleted, hire_date, comment } = req.body;
+        const { gender, is_deleted, hire_date, birth_date } = req.body;
         const result = await pool.query(
             'UPDATE employees SET gender = $1, is_deleted = $2, hire_date = $3 , birth_date = $4 WHERE id = $5 RETURNING *',
-            [gender, is_deleted, hire_date, comment, id]
+            [gender, is_deleted, hire_date, birth_date]
         );
         if (result.rows.length === 0) {
             return res.status(404).json({ message: 'Ошибка при обновлении' });

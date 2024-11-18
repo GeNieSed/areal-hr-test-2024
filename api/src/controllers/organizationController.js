@@ -1,3 +1,4 @@
+const {organizationSchema} = require('../validators/operationsValidator');
 const pool = require('../config/db.js');
 // просмотр всех данных
 exports.readOrganizations = async (req, res) => {
@@ -11,19 +12,27 @@ exports.readOrganizations = async (req, res) => {
 // Добавление новой записи
 exports.createOrganization = async (req, res) => {
     try {
+        const {error} = organizationSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { name, comment } = req.body;
         const result = await pool.query(
             'INSERT INTO organizations (name, comment) VALUES ($1, $2) RETURNING *',
             [name, comment]
         );
         res.status(201).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 // Обновление данных
 exports.updateOrganization = async (req, res) => {
     try {
+        const {error} = organizationSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const { name, comment } = req.body;
         const result = await pool.query(
@@ -34,8 +43,8 @@ exports.updateOrganization = async (req, res) => {
             return res.status(404).json({ message: 'Ошибка при обновлении' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 //Удаление данных

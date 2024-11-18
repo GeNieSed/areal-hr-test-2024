@@ -1,3 +1,4 @@
+const { addressSchema } = require('../validators/addressesValidator');
 const pool = require('../config/db.js');
 
 
@@ -15,14 +16,18 @@ exports.readAddresses= async (req, res) => {
 // Добавление новой записи
 exports.createAddresses = async (req, res) => {
     try {
+        const {error} = addressSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
         const { employee_id, region, city, street, house, building, apartment } = req.body;
         const result = await pool.query(
             'INSERT INTO addresses (employee_id, region, city, street, house, building, apartment) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
             [employee_id, region, city, street, house, building, apartment]
         );
         res.status(201).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -30,6 +35,10 @@ exports.createAddresses = async (req, res) => {
 // Обновление данных
 exports.updateAddresses = async (req, res) => {
     try {
+        const { error } = addressSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const {employee_id, region, city, street, house, building, apartment} = req.body;
         const result = await pool.query(
@@ -40,8 +49,8 @@ exports.updateAddresses = async (req, res) => {
             return res.status(404).json({ message: 'Ошибка при обновлении' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 

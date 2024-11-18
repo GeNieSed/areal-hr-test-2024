@@ -1,3 +1,4 @@
+const {passportDetailsSchema} = require('../validators/passportValidator');
 const pool = require('../config/db.js');
 
 // просмотр всех данных
@@ -13,20 +14,28 @@ exports.readPassport = async (req, res) => {
 // Добавление новой записи
 exports.createPassport = async (req, res) => {
     try {
+        const {error} = passportDetailsSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { employee_id, first_name, last_name, middle_name, series, number, issue_date, issue_code, is_active, issued_by } = req.body;
         const result = await pool.query(
             'INSERT INTO passport_details (employee_id, first_name, last_name, middle_name, series, number, issue_date, issue_code, is_active, issued_by ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
             [employee_id, first_name, last_name, middle_name, series, number, issue_date, issue_code, is_active, issued_by]
         );
         res.status(201).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 
 // Обновление данных
 exports.updatePassport = async (req, res) => {
     try {
+        const {error} = passportDetailsSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const { employee_id, first_name, last_name, middle_name, series, number, issue_date, issue_code, is_active, issued_by } = req.body;
         const result = await pool.query(
@@ -37,8 +46,8 @@ exports.updatePassport = async (req, res) => {
             return res.status(404).json({ message: 'Запись не найдена' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 

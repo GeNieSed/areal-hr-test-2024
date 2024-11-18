@@ -1,3 +1,4 @@
+const {operationTypeSchema} = require('../validators/typesValidator')
 const pool = require('../config/db.js');
 // просмотр всех данных
 exports.readTypes = async (req, res) => {
@@ -11,19 +12,27 @@ exports.readTypes = async (req, res) => {
 // Добавление новой записи
 exports.createTypes = async (req, res) => {
     try {
+        const {error} = operationTypeSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { name } = req.body;
         const result = await pool.query(
             'INSERT INTO operation_types (name) VALUES ($1) RETURNING *',
             [name]
         );
         res.status(201).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 // Обновление данных
 exports.updateTypes = async (req, res) => {
     try {
+        const {error} = operationTypeSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const { name } = req.body;
         const result = await pool.query(
@@ -34,8 +43,8 @@ exports.updateTypes = async (req, res) => {
             return res.status(404).json({ message: 'Ошибка при обновлении' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 //Удаление данных

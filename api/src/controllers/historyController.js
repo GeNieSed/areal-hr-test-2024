@@ -1,3 +1,4 @@
+const {changeHistorySchema} = require('../validators/historyValidator');
 const pool = require('../config/db.js');
 
 // Просмотр всех данных
@@ -13,20 +14,28 @@ exports.readChangeHistory = async (req, res) => {
 // Добавление новой записи
 exports.createChangeHistory = async (req, res) => {
     try {
+        const {error} = changeHistorySchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { operation_id, changed_by, object_type, changed_fields } = req.body;
         const result = await pool.query(
             'INSERT INTO change_history (operation_id, changed_by, object_type, changed_fields) VALUES ($1, $2, $3, $4) RETURNING *',
             [operation_id, changed_by, object_type, JSON.stringify(changed_fields)]
         );
         res.status(201).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 
 // Обновление данных
 exports.updateChangeHistory = async (req, res) => {
     try {
+        const {error} = changeHistorySchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const { changed_fields } = req.body;
         const result = await pool.query(
@@ -37,8 +46,8 @@ exports.updateChangeHistory = async (req, res) => {
             return res.status(404).json({ message: 'Запись не найдена' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 

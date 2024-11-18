@@ -1,3 +1,4 @@
+const {fileSchema} = require('../validators/filesValidator');
 const pool = require('../config/db.js');
 
 // Просмотр всех данных
@@ -13,6 +14,10 @@ exports.readFiles = async (req, res) => {
 // Добавление новой записи
 exports.createFile = async (req, res) => {
     try {
+        const {error} = fileSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { employee_registry_id, file_name, file_path } = req.body;
         const result = await pool.query(
             'INSERT INTO files (employee_registry_id, file_name, file_path) VALUES ($1, $2, $3) RETURNING *',
@@ -27,6 +32,10 @@ exports.createFile = async (req, res) => {
 // Обновление данных
 exports.updateFile = async (req, res) => {
     try {
+        const {error} = fileSchema.validate(req.body);
+        if (error) {
+            return res.status(500).json({ error: error.details[0].message });
+        }
         const { id } = req.params;
         const { file_name, file_path } = req.body;
         const result = await pool.query(
@@ -37,8 +46,8 @@ exports.updateFile = async (req, res) => {
             return res.status(404).json({ message: 'Файл не найден' });
         }
         res.status(200).json(result.rows[0]);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 };
 

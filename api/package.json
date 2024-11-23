@@ -9,7 +9,9 @@
     "pg": "^8.13.1"
   },
   "scripts": {
-    "migrate": "node-pg-migrate "
+    "migrate": "node-pg-migrate up -j ts -d DATABASE_URL --envPath .env -m api/src/migrations/changes"
+  },
+  "devDependencies": {
+    "eslint-plugin-vue": "^9.31.0"
   }
 }
-

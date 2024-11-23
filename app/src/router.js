@@ -1,17 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import organizationRoutes from './routes/organizationRoutes';
-import positionRoutes from './routes/positionRoutes';
-import departmentRoutes from './routes/departmentRoutes';
-// Объединяем маршруты из всех файлов
+import { createRouter, createWebHistory } from "vue-router";
+import DepartmentPage from "@/pages/DepartmentsPage.vue";
+
 const routes = [
-    ...organizationRoutes,
-    ...positionRoutes,
-    ...departmentRoutes,
+  {
+    path: "/department",
+    component: DepartmentPage,
+  },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>Список департаментов</h1>
-    <DepartmentTable :departments="departments" @edit="editDepartment" @delete="deleteDepartment" />
+    <DepartmentTable
+      :departments="departments"
+      @edit="editDepartment"
+      @delete="deleteDepartment"
+    />
     <button @click="showForm = true">Добавить департамент</button>
 
     <DepartmentForm v-if="showForm" @submit="addDepartment" />
@@ -9,16 +13,20 @@
 </template>
 
 <script>
-import { getDepartments, createDepartment, deleteDepartment } from '../api/departmentsApi';
-import DepartmentTable from '../modules/departments/components/DepartmentTable.vue';
-import DepartmentForm from '../modules/departments/components/DepartmentForm.vue';
+import {
+  getDepartments,
+  createDepartment,
+  deleteDepartment,
+} from "@/modules/departments/api/departmentsApi";
+import DepartmentTable from "@/modules/departments/components/DepartmentTable.vue";
+import DepartmentForm from "@/modules/departments/components/DepartmentForm.vue";
 
 export default {
   components: { DepartmentTable, DepartmentForm },
   data() {
     return {
       departments: [],
-      showForm: false
+      showForm: false,
     };
   },
   async created() {
@@ -33,12 +41,11 @@ export default {
     },
     async deleteDepartment(id) {
       await deleteDepartment(id);
-      this.departments = this.departments.filter(dep => dep.id !== id);
+      this.departments = this.departments.filter((dep) => dep.id !== id);
     },
     editDepartment(department) {
       this.$router.push(`/departments/edit/${department.id}`);
-    }
-  }
+    },
+  },
 };
 </script>
-

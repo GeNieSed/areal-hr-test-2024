@@ -1,5 +1,5 @@
-import ReadPosition from "../../components/positions/readPositions.vue";
-import AddPosition from "../../components/positions/addPositions.vue";
+import ReadPosition from "../components/positions/readPositions.vue";
+import AddPosition from "../components/positions/addPositions.vue";
 
 const positionRoutes = [
     {

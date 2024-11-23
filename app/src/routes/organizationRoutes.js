@@ -1,7 +1,7 @@
 
-import ReadOrganizations from '../../components/organizations/readOrganizations.vue';
-import AddOrganization from '../../components/organizations/addOrganizations.vue';
-import EditOrganization from '../../components/organizations/editOrganizations.vue';
+import ReadOrganizations from '../components/organizations/readOrganizations.vue';
+import AddOrganization from '../components/organizations/addOrganizations.vue';
+import EditOrganization from '../components/organizations/editOrganizations.vue';
 const organizationRoutes = [
     {
         path: '/',

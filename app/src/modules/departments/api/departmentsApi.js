@@ -1,7 +1,20 @@
-import axios from "../../../http-common";
+import axios from "@/http-common";
 
-export const getDepartments = () => axios.get("/department");
-export const createDepartment = (data) => axios.post("/department", data);
-export const updateDepartment = (id, data) =>
-  axios.put(`/department/${id}`, data);
-export const deleteDepartment = (id) => axios.delete(`/department/${id}`);
+export const getDepartments = () => {
+  return axios.get("/department");
+};
+
+export const getDepartmentById = (id) => {
+  return axios.get(`/department/${id}`);
+};
+export const createDepartment = (department) => {
+  return axios.post("/department", department);
+};
+
+export const updateDepartment = (id, data) => {
+  return axios.put(`/department/${id}`, data);
+};
+
+export const deleteDepartment = (id) => {
+  return axios.delete(`/department/${id}`);
+};

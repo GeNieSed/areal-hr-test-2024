@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -15,8 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/api', organizationRoutes);
 app.use('/api', positionsRoutes);
-app.use('/api' , departmentRoutes)
+app.use('/api', departmentRoutes);
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-

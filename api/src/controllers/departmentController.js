@@ -78,3 +78,22 @@ exports.deleteDepartment = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Получить отдел по ID
+exports.readDepartmentById = async (req, res) => {
+  try {
+    const { id } = req.params; // Извлечение ID из параметров маршрута
+    const result = await pool.query('SELECT * FROM departments WHERE id = $1', [
+      id,
+    ]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Отдел не найден' });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+};

@@ -1,0 +1,173 @@
+:root {
+    --color-green: #287C58;
+    --color-green-active: #1E5B41;
+    --color-green-stroke: #10452E;
+    --color-white-green: #F7FCF9;
+    --font-family-title: Involve;
+    --color-text-black: #434343;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+}
+div#app {
+    display: flex;
+}
+h1{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-family-title);
+}
+main{
+    height: 100vh;
+    width: 40px;
+    background-color: var(--color-green);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    gap: 50px;
+}
+div.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-green-active);
+    border: 1px solid var(--color-green-stroke);
+    border-radius: 6px;
+}
+header{
+    padding: 30px;
+    width: 100%;
+    background-color: var(--color-white-green);
+}
+div.content{
+    display: flex;
+    gap: 28px;
+    flex-direction: column;
+}
+div.function{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+nav{
+    display: flex;
+    gap: 16px;
+}
+nav a{
+    text-decoration: none;
+    color: var(--color-text-black);
+    font-size: 14px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+thead tr th{
+    color: #687182;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 150% */
+    letter-spacing: 0.36px;
+    text-transform: uppercase;
+}
+tbody tr td{
+    color: #000;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.28px;
+}
+.styled-table th,
+.styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+
+}
+
+.styled-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+}
+
+.styled-table td:nth-child(1) {
+    width: 84px;
+    text-align: left;
+}
+
+.styled-table td:nth-child(2) {
+    width: 57px;
+    text-align: center;
+}
+
+.styled-table td:nth-child(3),
+.styled-table td:nth-child(4),
+.styled-table td:nth-child(5),
+.styled-table td:nth-child(7),
+.styled-table td:nth-child(8),
+.styled-table td:nth-child(9),
+.styled-table td:nth-child(10) {
+    width: 219px;
+    text-align: left;
+}
+
+.styled-table td:nth-child(6) {
+    width: 79px;
+    text-align: left;
+}
+.button#delete{
+    display: flex;
+    padding: 2px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    border-radius: 4px;
+    border: 1px solid #FFEDED;
+    background: #FFFCFC;
+    transition: 0.3s;
+}
+.button#edit:hover{
+    background: #90E1BF;
+    cursor: pointer;
+}
+.button#edit{
+    display: flex;
+    padding: 2px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    border-radius: 4px;
+    border: 1px solid #D1E9DF;
+    background: #F9FFFD;
+    transition: 0.3s;
+}
+.button#delete:hover{
+    background: #FFA7A7;
+    cursor: pointer;
+}
+nav a#one {
+    color: var(--color-green);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.28px;
+}

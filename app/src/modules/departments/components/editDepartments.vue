@@ -73,11 +73,24 @@ export default {
     async updateDepartment() {
       try {
         const departmentId = this.$route.params.id;
-        const response = await updateDepartment(departmentId, this.formData);
+
+        // Создаём копию объекта и удаляем поле id
+        const formData = { ...this.formData };
+        delete formData.id;
+
+        // Преобразуем пустые строки в null
+        if (formData.organization_id === "") formData.organization_id = null;
+        if (formData.parent_department_id === "")
+          formData.parent_department_id = null;
+
+        const response = await updateDepartment(departmentId, formData);
         alert("Отдел успешно обновлен");
         this.$router.push("/department");
       } catch (error) {
-        console.error("Ошибка при обновлении отдела:", error.message);
+        console.error(
+          "Ошибка при обновлении отдела:",
+          error.response?.data || error.message,
+        );
       }
     },
   },

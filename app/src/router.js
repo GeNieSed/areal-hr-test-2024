@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import DepartmentPage from "@/pages/DepartmentsPage.vue";
-
+import departmentRoutes from "../routes/departmentRoutes";
+import organizationRouter from "../routes/organizationRoutes";
+import indexRouter from "../routes/indexRouter";
+import operationsRouter from "../routes/types_routes";
+import employeesRoutes from "../routes/employeesRouter";
 const routes = [
-  {
-    path: "/department",
-    component: DepartmentPage,
-  },
+  ...indexRouter,
+  ...departmentRoutes,
+  ...organizationRouter,
+  ...operationsRouter,
+  ...employeesRoutes,
 ];
 
 const router = createRouter({

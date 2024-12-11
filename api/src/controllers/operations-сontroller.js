@@ -1,6 +1,6 @@
 const {
   employmentOperationSchema,
-} = require('../validators/operationsValidator');
+} = require('../validators/operations-validator');
 const pool = require('../config/db.js');
 // просмотр всех данных
 exports.readOperations = async (req, res) => {

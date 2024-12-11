@@ -1,4 +1,4 @@
-const { addressSchema } = require('../validators/addressesValidator');
+const { addressSchema } = require('../validators/addresses-validator');
 const pool = require('../config/db.js');
 
 // просмотр всех данных

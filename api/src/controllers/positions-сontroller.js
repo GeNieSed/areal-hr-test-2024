@@ -1,4 +1,4 @@
-const { positionSchema } = require('../validators/positionValidator');
+const { positionSchema } = require('../validators/position-validator');
 const pool = require('../config/db.js');
 
 // просмотр всех данных

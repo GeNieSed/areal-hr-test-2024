@@ -1,7 +1,7 @@
 const {
   createDepartmentSchema,
   updateDepartmentSchema,
-} = require('../validators/departmentValidator');
+} = require('../validators/department-validator');
 const pool = require('../config/db.js');
 
 // Получить все отделы

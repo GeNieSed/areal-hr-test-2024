@@ -1,4 +1,4 @@
-const { employeeRegistrySchema } = require('../validators/registryValidator');
+const { employeeRegistrySchema } = require('../validators/registry-validator');
 const pool = require('../config/db.js');
 // просмотр всех данных
 exports.readRegistry = async (req, res) => {

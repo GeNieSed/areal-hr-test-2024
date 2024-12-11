@@ -1,4 +1,4 @@
-const { employeeSchema } = require('../validators/employeesValidator');
+const { employeeSchema } = require('../validators/employees-validator');
 const pool = require('../config/db.js');
 
 // просмотр всех данных

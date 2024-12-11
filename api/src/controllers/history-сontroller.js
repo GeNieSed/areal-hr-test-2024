@@ -1,4 +1,4 @@
-const { changeHistorySchema } = require('../validators/historyValidator');
+const { changeHistorySchema } = require('../validators/history-validator');
 const pool = require('../config/db.js');
 
 // Просмотр всех данных

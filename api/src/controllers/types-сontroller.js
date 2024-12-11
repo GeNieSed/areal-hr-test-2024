@@ -1,4 +1,5 @@
-const { operationTypeSchema } = require('../validators/typesValidator');
+const operationTypeSchema = require('../validators/types-validator');
+
 const pool = require('../config/db.js');
 // просмотр всех данных
 exports.readTypes = async (req, res) => {
@@ -14,7 +15,7 @@ exports.createTypes = async (req, res) => {
   try {
     const { error } = operationTypeSchema.validate(req.body);
     if (error) {
-      return res.status(500).json({ error: error.details[0].message });
+      return res.status(400).json({ error: error.details[0].message });
     }
     const { name } = req.body;
     const result = await pool.query(
@@ -26,6 +27,7 @@ exports.createTypes = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 // Обновление данных
 exports.updateTypes = async (req, res) => {
   try {

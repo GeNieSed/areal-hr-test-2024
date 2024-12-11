@@ -1,4 +1,4 @@
-const { passportDetailsSchema } = require('../validators/passportValidator');
+const { passportDetailsSchema } = require('../validators/passport-validator');
 const pool = require('../config/db.js');
 
 // просмотр всех данных

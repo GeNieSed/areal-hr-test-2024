@@ -1,4 +1,4 @@
-const { fileSchema } = require('../validators/filesValidator');
+const { fileSchema } = require('../validators/files-validator');
 const pool = require('../config/db.js');
 
 // Просмотр всех данных
